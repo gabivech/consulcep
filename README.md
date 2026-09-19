@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ConsulCEP
 
-## Getting Started
+ConsulCEP é uma aplicação web estática para consultar endereços brasileiros, comparar distâncias entre CEPs e estimar prazos e custos de envio.
 
-First, run the development server:
+## Funcionalidades
+
+- Consulta de endereço por CEP usando `cep-promise`.
+- Busca reversa por UF, cidade e logradouro, incluindo número da residência.
+- Visualização da região consultada em um mapa OpenStreetMap.
+- Comparação da distância aproximada entre dois CEPs.
+- Estimativa de prazo econômico ou expresso.
+- Simulação de frete baseada em distância, peso e dimensões do pacote.
+- Interface responsiva em português, sem cadastro ou variáveis secretas.
+
+## Rotas
+
+| Rota | Descrição |
+| --- | --- |
+| `/` | Consulta por CEP ou endereço |
+| `/distancia` | Distância aproximada entre dois CEPs |
+| `/prazo` | Estimativa de prazo por distância e tipo de envio |
+| `/frete` | Simulação de custo por rota e características do pacote |
+
+## Fontes de dados
+
+- [`cep-promise`](https://www.npmjs.com/package/cep-promise): consulta principal de CEP.
+- [BrasilAPI](https://brasilapi.com.br/): coordenadas geográficas e dados de CEP.
+- [Nominatim](https://nominatim.org/): busca de endereço e geocodificação.
+- [OpenStreetMap](https://www.openstreetmap.org/): mapa incorporado na página de consulta.
+
+As páginas de distância, prazo e frete apresentam estimativas. Elas não representam uma cotação oficial dos Correios ou de outra transportadora e podem variar conforme operação, contrato, adicionais, feriados e regras regionais.
+
+## Desenvolvimento
+
+Requisitos: Node.js 20 ou superior e npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+No PowerShell do Windows, use `npm.cmd` caso a política de execução bloqueie `npm`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+npm.cmd run dev
+```
 
-## Learn More
+## Testes e build
 
-To learn more about Next.js, take a look at the following resources:
+Os testes unitários usam Vitest e cobrem formatação de CEP, coordenadas, distância e faixas de prazo.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm test
+npm run lint
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+O build usa `output: "export"` no Next.js e gera o site estático na pasta `out/`, que pode ser publicado em qualquer hospedagem de arquivos estáticos.
 
-## Deploy on Vercel
+## Estrutura principal
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+app/
+  page.tsx              # Consulta de CEP e endereço
+  distancia/page.tsx    # Comparação de distância
+  prazo/page.tsx        # Estimativa de prazo
+  frete/page.tsx        # Simulação de frete
+  lib/                  # Regras compartilhadas
+tests/                  # Testes unitários
+```
