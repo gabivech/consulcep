@@ -57,15 +57,15 @@ npm run lint
 npm run build
 ```
 
-O build usa `output: "export"` no Next.js e gera o site estático na pasta `out/`, que pode ser publicado em qualquer hospedagem de arquivos estáticos.
+O build usa o fluxo padrão do Next.js e gera a aplicação na pasta `.next/`.
 
 ## Deploy na Vercel
 
 1. Envie o repositório para o GitHub.
 2. Na Vercel, selecione **Add New Project** e importe o repositório.
-3. Mantenha o framework como **Next.js** e confirme o deploy.
+3. Mantenha o framework como **Next.js**, deixe **Output Directory** vazio e confirme o deploy.
 
-O arquivo `vercel.json` já configura `npm run build` e a pasta `out/` como saída. Este projeto não exige variáveis de ambiente.
+O projeto usa a configuração padrão da Vercel para Next.js, com build em `.next/`, e não exige variáveis de ambiente.
 
 ## Estrutura principal
 
