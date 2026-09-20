@@ -2,6 +2,8 @@
 
 ConsulCEP é uma aplicação web estática para consultar endereços brasileiros, comparar distâncias entre CEPs e estimar prazos e custos de envio.
 
+Deploy na Vercel: https://consulcep-sigma.vercel.app/
+
 ## Funcionalidades
 
 - Consulta de endereço por CEP usando `cep-promise`.
