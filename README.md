@@ -63,9 +63,9 @@ O build usa o fluxo padrão do Next.js e gera a aplicação na pasta `.next/`.
 
 1. Envie o repositório para o GitHub.
 2. Na Vercel, selecione **Add New Project** e importe o repositório.
-3. Mantenha o framework como **Next.js** e confirme o deploy.
+3. Mantenha o framework como **Next.js**, deixe **Output Directory** vazio e confirme o deploy.
 
-O projeto usa a configuração padrão da Vercel para Next.js e não exige variáveis de ambiente.
+O projeto usa a configuração padrão da Vercel para Next.js, com build em `.next/`, e não exige variáveis de ambiente.
 
 ## Estrutura principal
 
